@@ -8,8 +8,8 @@ colnames(g_top_list)[1] <- "title"
 colnames(g_top_list)[5] <- "rating_score"
 
 sample_generator <- function() {
-  a <- sample(1:1080, 5) # id
-  v <- c(game[a[1],2],game[a[2],2],game[a[3],2],game[a[4],2],game[a[5],2]) # title of games
+  a <- sample(1:1080, 5) # index (not rank)
+  v <- c(game[a[1],2],game[a[2],2],game[a[3],2],game[a[4],2],game[a[5],2]) # title
   pair <- list("a" = a, "v" = v)
   return(pair)
 }
@@ -21,6 +21,8 @@ game_recommender <- function(s1, s2, s3, s4, s5) {
   w4 = as.numeric(s4)
   w5 = as.numeric(s5)
   
+  # k[n] is vector of game[n]
+  # if 'like' vector would be k[n], or 'dislike' vector would be -k[n]
   if(w1 > 0) { k1 = w_game[w1,] }
   else {
     w1 = -w1
@@ -56,13 +58,15 @@ game_recommender <- function(s1, s2, s3, s4, s5) {
   k3 = as.vector(k3)
   k4 = as.vector(k4)
   k5 = as.vector(k5)
-  uv <- k1 + k2 + k3 + k4 + k5
+  uv <- k1 + k2 + k3 + k4 + k5 # user vector
   
+  # calculate cosine similarity between user vector(uv) and item vector(iv)
+  # except sample item
   for(i in 1:1080) {
     if(i == w1 || i == w2 || i == w3 || i == w4 || i == w5) { next }
     tmp_item_vec = as.vector(w_game[i,])
-    molec <- sum(uv*tmp_item_vec) # 분자
-    denom <- sqrt(sum(uv^2)) * sqrt(sum(tmp_item_vec^2)) # 분모
+    molec <- sum(uv*tmp_item_vec) # molecule (the inner product of uv, iv)
+    denom <- sqrt(sum(uv^2)) * sqrt(sum(tmp_item_vec^2)) # denominator (size of uv, iv)
     if(molec < 0) {
       g_top_list$g_sim[i] = -(abs(molec) / denom)
     } else {
