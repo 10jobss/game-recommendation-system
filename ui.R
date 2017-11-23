@@ -2,9 +2,12 @@ library(shiny)
 source("game_recommender.R")
 game <- read.csv("D:/Data_Set/google_game_all.csv", header=T, stringsAsFactors = FALSE)
 w_game <- read.csv("D:/Data_Set/weighted_google_game.csv", header=T, stringsAsFactors = FALSE)
+
+# genearte random number
+# v - title, a - index (not rank)
 p <- sample_generator()
-v <- p$v # title of game
-a <- p$a # index
+v <- p$v
+a <- p$a
 
 shinyUI(pageWithSidebar(
   headerPanel("GooglePlay game recommender system"),
@@ -12,7 +15,7 @@ shinyUI(pageWithSidebar(
     titlePanel(
       h3("Choose what you like")
     ),
-    
+    # if user choose 'like' return index, or 'dislike' return -index
     radioButtons(inputId = "select1", label = v[1],
                  choices = c("Like" = a[1], "Dislike" = -a[1]), selected = character(0), inline = TRUE),
     radioButtons(inputId = "select2", label = v[2],
