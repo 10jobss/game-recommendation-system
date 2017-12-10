@@ -26,6 +26,16 @@ shinyUI(pageWithSidebar(
                  choices = c("Like" = a[4], "Dislike" = -a[4]), selected = character(0), inline = TRUE),
     radioButtons(inputId = "select5", label = v[5],
                  choices = c("Like" = a[5], "Dislike" = -a[5]), selected = character(0), inline = TRUE),
+    radioButtons(inputId = "select6", label = v[6],
+                 choices = c("Like" = a[6], "Dislike" = -a[6]), selected = character(0), inline = TRUE),
+    radioButtons(inputId = "select7", label = v[7],
+                 choices = c("Like" = a[7], "Dislike" = -a[7]), selected = character(0), inline = TRUE),
+    radioButtons(inputId = "select8", label = v[8],
+                 choices = c("Like" = a[8], "Dislike" = -a[8]), selected = character(0), inline = TRUE),
+    radioButtons(inputId = "select9", label = v[9],
+                 choices = c("Like" = a[9], "Dislike" = -a[9]), selected = character(0), inline = TRUE),
+    radioButtons(inputId = "select10", label = v[10],
+                 choices = c("Like" = a[10], "Dislike" = -a[10]), selected = character(0), inline = TRUE),
     actionButton("button", "Get Recommend")
   ),
   mainPanel(
