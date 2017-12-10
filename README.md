@@ -6,4 +6,3 @@ Mobile game recommender system
  - library(shiny)\n
  - setwd("path where ui.R, server.R") // your path
  - runApp()\n
- - setwd("path where ui.R, server.R") // your path
