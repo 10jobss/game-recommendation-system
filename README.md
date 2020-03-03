@@ -1,4 +1,4 @@
-# How to launch
+# Getting Started
   You have to install shiny library first. // install.packages("shiny")
   
  - library(shiny)
