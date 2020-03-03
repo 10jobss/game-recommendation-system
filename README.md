@@ -1,6 +1,4 @@
-# RS_game
-Mobile game recommender system
- # How to launch
+# How to launch
   You have to install shiny library first. // install.packages("shiny")
   
  - library(shiny)
